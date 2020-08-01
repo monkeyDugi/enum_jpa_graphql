@@ -1,0 +1,50 @@
+plugins {
+    id 'org.springframework.boot' version '2.3.2.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    compile('com.h2database:h2')
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    implementation 'junit:junit:4.12'
+
+    implementation 'com.graphql-java-kickstart:graphql-spring-boot-starter:7.0.1'
+
+    // to embed GraphiQL tool
+    runtimeOnly 'com.graphql-java-kickstart:graphiql-spring-boot-starter:7.0.1'
+
+    // testing facilities
+    testImplementation 'com.graphql-java-kickstart:graphql-spring-boot-starter-test:7.0.1'
+
+    // graphQL과 java간의 매핑을 위함
+    // @GraphQLQuery(name = "user"): graphQL의 query명이 user이고, java의 메서드 명이 getUser일 때 사용.
+    // 어노테이션을 사용하지 않으면, 서로 명칭이 같아야 매핑 됨. 하지만 java와 graphQL의 명명 규칙이 다른 면이 있어서 사용.
+    compile 'io.leangen.graphql:spqr:0.10.0'
+}
+
+test {
+    useJUnitPlatform()
+}
