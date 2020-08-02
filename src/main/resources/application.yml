@@ -1,0 +1,22 @@
+### GraphQl
+#graphql:
+#  servlet:
+#    mapping: /graphql
+#    enabled: true
+#    corsEnabled: true
+#
+#  jpa:
+#    show_sql: true
+#    properties:
+#      hibernate:
+#        format_sql: true
+#        ## MySQL 문법 사용 : MySQL5InnoDBDialect => 운영에서 사용
+#        dialect: org.hibernate.dialect.H2Dialect
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+  h2:
+    console:
+      enabled: true
+
